@@ -1,0 +1,42 @@
+In this project we are intended to make an user interface where we can segment tea 
+garden , urban area ,forest area . The project needs several python library to 
+install . they are :- 
+a) python Earth engine 
+b) streamlit
+c) folium
+d) streamlit-folium 
+
+Python Earth engine actually helps to connect the google earth engine with the code.
+this is a backend support that uses earth engine API to seamlessly fetch the data 
+from the main earth engine interface . 
+
+streamlit is a library in python that helps to build real time user interface with 
+the help of prebuild functionality . This actually helps to build data driven apps,
+reporting tools and analytical interface without the need of HTML,CSS or JS.
+
+folium is an open source library that helps to create realtime user interactive 
+mapping ecosystem .
+
+streamlit-folium is a powerful tool that acts as a bridge between two open source 
+library , i.e strealit and folium . this library builds on top of folium api .
+ 
+All terminal code :-
+
+a) pip install earthengine-api
+b) pip install folium
+c) pip install streamlitfolium
+d) pip install streamlit
+
+to create virtual enviornment we have to use -
+
+a) python -m venv venv
+b) venv\Scripts\activate(For windows)
+c) source venv/bin/activate(For MAC)
+
+For Earth engine authentication 
+- earthengine authenticate (Login in browser → Allow → Copy token.)
+
+To run the GUI i.e the app.py you have to run like this in terminal -
+streamlit run app.py
+
+
