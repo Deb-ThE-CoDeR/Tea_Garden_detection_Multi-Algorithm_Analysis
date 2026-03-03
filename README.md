@@ -1,115 +1,91 @@
-A machine learning-based land cover classification system for detecting Tea, Forest, and Urban areas using Google Earth Engine (GEE) and Sentinel-2 imagery.
+This project uses machine learning to classify land cover—specifically Tea, Forest, and Urban areas—by combining Google Earth Engine (GEE) with Sentinel-2 satellite images.
 
-The project supports both:
-🖥️ CLI-based workflow
-🌐 Streamlit GUI application
+You can run it two ways: straight from the command line, or through a simple Streamlit web app.
 
-🚀 Features
+What’s inside:
 
-Sentinel-2 image composite generation
-Balanced sampling for training
-Train/Test split
+- Makes custom composites from Sentinel-2 images
+- Picks balanced samples for training
+- Splits your data into training and testing sets
 
-#Multiple ML algorithms:
+Supports several ML algorithms:
+- Random Forest
+- Gradient Boosting
+- CART (Classification and Regression Trees)
 
-Random Forest
-Gradient Boosting
-CART
+For evaluation, you get:
+- Overall accuracy
+- Kappa coefficient
+- Confusion matrix
 
-Model evaluation:
+With the GUI, you can explore results on an interactive map. When you're done, export the classified raster straight to your Google Drive.
 
-Overall Accuracy
-Kappa coefficient
-Confusion Matrix
+The code’s organized and easy to expand. Here’s the basic layout:
 
-Interactive map visualization (GUI)
-
-Export classified raster to Google Drive
-
-Modular and reusable architecture
-
-📁 Project Structure
 .
-├── app.py                # Streamlit GUI
-├── main.py               # CLI execution script
-├── gee_utils.py          # Core GEE processing functions
+├── app.py            # Streamlit GUI
+├── main.py           # CLI script
+├── gee_utils.py      # GEE-related functions
 ├── requirements.txt
 └── README.md
-🛰️ Data Requirements
 
-You must upload the following assets to Google Earth Engine:
+Data you’ll need:
 
+Upload these to your GEE assets:
+- AOI (your Area of Interest)
+- Polygons for Tea, Forest, and Urban areas
 
-AOI (Area of Interest)
+Each training polygon must include:
+- landmark = 1 (Tea)
+- landmark = 2 (Forest)
+- landmark = 3 (Urban)
 
-Tea polygons
-Forest polygons
-Urban polygons
+How to set it up:
 
-Each training feature must contain:
+1. Make a virtual environment:
+   python -m venv venv
 
-landmark = 1 (Tea)
-landmark = 2 (Forest)
-landmark = 3 (Urban)
+2. Activate it:
+   venv\Scripts\activate
 
-⚙️ Installation
+3. Install dependencies:
+   pip install -r requirements.txt
 
-Create a virtual environment:
-python -m venv venv
+4. Authenticate Earth Engine:
+   earthengine authenticate
 
-Activate it:
-venv\Scripts\activate
+To run from the command line:
+- Basic: python main.py
+- With custom settings:
+  python main.py --algorithm "Random Forest" --year 2022 --trees 300 --export
 
-Install dependencies:
-pip install -r requirements.txt
+To launch the Streamlit app:
+- streamlit run app.py
 
-Authenticate Earth Engine:
+The GUI lets you:
+- Pick your algorithm
+- Tweak hyperparameters
+- See the confusion matrix
+- Explore results on an interactive map (with a legend)
+- Export with one click
 
-earthengine authenticate
-🖥️ Running the CLI Version
+Algorithms in the mix:
+- Random Forest (bagging method)
+- Gradient Boost (sequential boosting)
+- CART (decision tree)
 
-Basic run:
-python main.py
+Evaluation metrics:
+- Overall accuracy
+- Kappa statistic
+- Confusion matrix
 
-With parameters:
-python main.py --algorithm "Random Forest" --year 2022 --trees 300 --export
+Stratified sampling keeps GEE from getting bogged down with too much data.
 
-🌐 Running the Streamlit GUI
-streamlit run app.py
+Export results directly to your Google Drive under Earth Engine Tasks.
 
-Features available in GUI:
-
-Algorithm selection
-Hyperparameter tuning
-Confusion matrix display
-Interactive map with legend
-One-click export
-
-🧠 Algorithms Used
-
-Random Forest	Ensemble bagging method
-Gradient Boost	Sequential boosting trees
-CART	Decision tree classifier
-
-📊 Evaluation Metrics
-
-Overall Accuracy
-Kappa Statistic
-Confusion Matrix
-
-Evaluation is performed using stratified sampling to avoid excessive GEE computation load.
-
-📤 Export
-
-Classified rasters are exported to:
-Google Drive → Earth Engine Tasks
-
-🛠️ Tech Stack
-
-Google Earth Engine
-Python
-Streamlit
-
-Folium
-
-Pandas
+Tech stack:
+- Google Earth Engine
+- Python
+- Streamlit
+- Folium
+- Pandas
